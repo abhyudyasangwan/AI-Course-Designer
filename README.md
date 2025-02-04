@@ -87,6 +87,8 @@ def get_skills_from_gpt4(course_title):
         print(f"Error fetching skills for '{course_title}': {e}")
         return None
 ```
+![Sample Image](https://i.imgur.com/oZCT3rB.png)
+
 ---
 
 ### Step 2: Extract Relevant Skills from User Input
@@ -156,6 +158,7 @@ Provide the output as a Python list of skills, like this:
         print(f"Error fetching skills from GPT-4: {e}")
         return None
 ```
+![Sample Image](https://i.imgur.com/M8lnDfp.png)
 
 ---
 
@@ -241,6 +244,7 @@ Provide the output as a Python list of skills, like this:
         print(f"Error fetching skills from GPT-4: {e}")
         return None
 ```
+![Sample Image](https://i.imgur.com/OOfuurS.png)
 
 ---
 
@@ -358,6 +362,7 @@ def find_similar_course_bert(input_text, course_title_list, similarity_threshold
 final_course_list = find_similar_course_bert(final_updated_skills, course_title_list)
 print("Courses found (BERT):", final_course_list)
 ```
+![Sample Image](https://i.imgur.com/jfkwFJJ.png)
 
 ---
 
@@ -434,6 +439,7 @@ final_response_list = extract_relevant_skills2(final_course_list)
 
 print("Optimized Course List:", final_response_list)
 ```
+![Sample Image](https://i.imgur.com/nObWxc5.png)
 
 ---
 
@@ -502,6 +508,7 @@ final_response_list = sort_courses(final_response_list)
 
 print("Optimized Course List:", final_response_list)
 ```
+![Sample Image](https://i.imgur.com/13ljg10.png)
 
 ---
 
@@ -556,6 +563,7 @@ print("Generated Course Details:")
 for course in course_details_list:
     print(course)
 ```
+![Sample Image](https://i.imgur.com/KuQTg50.png)
 
 ---
 
@@ -600,6 +608,6 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This is a personal project. Please don't use it elsewhere.
 
 ---
