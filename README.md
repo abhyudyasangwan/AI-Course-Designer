@@ -46,6 +46,15 @@ The project is divided into several key components, each of which is explained i
 
 This function sends a course title to GPT-4 and retrieves a list of skills required to complete the course.
 
+**Explanation**:
+- **Purpose**: This function is designed to extract a list of skills required for a given course title using GPT-4.
+- **Input**: A course title.
+- **Output**: A comma-separated string of skills.
+- **Process**:
+  - A prompt is created asking GPT-4 to analyze the course title and return a list of skills.
+  - The response from GPT-4 is processed to extract the skills.
+  - If an error occurs, it is caught and handled gracefully.
+
 ```python
 def get_skills_from_gpt4(course_title):
     """
@@ -76,12 +85,21 @@ def get_skills_from_gpt4(course_title):
         print(f"Error fetching skills for '{course_title}': {e}")
         return None
 ```
-
 ---
 
 ### Step 2: Extract Relevant Skills from User Input
 
 This function takes user input, sends it to GPT-4, and extracts a list of relevant skills needed to achieve the user's goal.
+
+
+**Explanation**:
+- **Purpose**: This function extracts a list of relevant skills from user input using GPT-4.
+- **Input**: User input describing their learning goal or career aspiration.
+- **Output**: A Python list of skills.
+- **Process**:
+  - A prompt is created asking GPT-4 to analyze the user input and return a list of skills.
+  - The response from GPT-4 is processed to extract the skills.
+  - If an error occurs, it is caught and handled gracefully.
 
 ```python
 def extract_relevant_skills(user_input):
@@ -143,6 +161,15 @@ Provide the output as a Python list of skills, like this:
 
 This function extracts a Python list from GPT-4's response, even if it includes extra text.
 
+**Explanation**:
+- **Purpose**: This function extracts a Python list from GPT-4's response.
+- **Input**: GPT-4's response.
+- **Output**: A Python list.
+- **Process**:
+  - The function finds the start and end of the list in the response.
+  - The list is extracted and evaluated into a Python list.
+  - If an error occurs, it is caught and handled gracefully.
+
 ```python
 def extract_list_from_response(response):
     """
@@ -167,6 +194,15 @@ def extract_list_from_response(response):
 ### Step 4: Refine Skills List Based on User Feedback
 
 This function allows the user to refine the list of skills by removing or modifying entries.
+
+**Explanation**:
+- **Purpose**: This function refines the list of skills based on user feedback.
+- **Input**: User input and a list of skills.
+- **Output**: A refined Python list of skills.
+- **Process**:
+  - A prompt is created asking GPT-4 to refine the list of skills based on user feedback.
+  - The response from GPT-4 is processed to extract the refined list of skills.
+  - If an error occurs, it is caught and handled gracefully.
 
 ```python
 def final_relevant_skills(user_input, skills):
@@ -210,6 +246,16 @@ Provide the output as a Python list of skills, like this:
 
 This function creates a TF-IDF matrix from the course titles in the dataset.
 
+**Explanation**:
+- **Purpose**: This function creates a TF-IDF matrix from the course titles in the dataset.
+- **Input**: A dataset containing course titles.
+- **Output**: A TF-IDF matrix.
+- **Process**:
+  - The dataset is copied and unnecessary columns are removed.
+  - The course titles are converted to lowercase.
+  - A TF-IDF vectorizer is initialized and the matrix is computed.
+  - The shape of the TF-IDF matrix is printed.
+
 ```python
 ds = df.copy()
 
@@ -241,6 +287,14 @@ print("TF-IDF Matrix shape:", tfidf_matrix.shape)
 
 This function converts the list of skills into a single string with comma separation.
 
+**Explanation**:
+- **Purpose**: This function converts a list of skills into a single string with comma separation.
+- **Input**: A list of skills.
+- **Output**: A string of skills separated by commas.
+- **Process**:
+  - The list of skills is joined into a single string with comma separation.
+  - The string is formatted and printed.
+
 ```python
 skills_string = ', '.join(updated_skills)
 
@@ -254,6 +308,19 @@ print(final_updated_skills)
 ### Step 7: Find Similar Courses Using Cosine Similarity
 
 This function finds similar courses using **TF-IDF** and **BERT-based cosine similarity**.
+
+**Explanation**:
+- **Purpose**: This function finds similar courses using **TF-IDF** and **BERT-based cosine similarity**.
+- **Input**: A string of skills, a TF-IDF matrix, a vectorizer, and a list of course titles.
+- **Output**: A list of similar courses.
+- **Process**:
+  - The input text is converted to lowercase.
+  - The input text is transformed into a vector using the TF-IDF vectorizer.
+  - Cosine similarity is computed between the input vector and the TF-IDF matrix.
+  - The top indices with similarity scores above the threshold are identified.
+  - The list of similar courses is returned.
+  - A pre-trained BERT model is loaded and used to compute cosine similarity.
+  - The list of similar courses is returned.
 
 ```python
 def find_similar_course(input_text, tfidf_matrix, vectorizer, course_title_list, similarity_threshold=0.40):
@@ -295,6 +362,15 @@ print("Courses found (BERT):", final_course_list)
 ### Step 8: Remove Overlapping Courses
 
 This function removes overlapping courses from the list.
+
+**Explanation**:
+- **Purpose**: This function removes overlapping courses from the list.
+- **Input**: A list of courses.
+- **Output**: A refined list of courses.
+- **Process**:
+  - A prompt is created asking GPT-4 to analyze and optimize the list of courses.
+  - The response from GPT-4 is processed to extract the refined list of courses.
+  - If an error occurs, it is caught and handled gracefully.
 
 ```python
 def extract_relevant_skills2(final_course_list):
@@ -363,6 +439,15 @@ print("Optimized Course List:", final_response_list)
 
 This function sorts the courses in a logical learning path.
 
+**Explanation**:
+- **Purpose**: This function sorts the courses in a logical learning path.
+- **Input**: A list of courses.
+- **Output**: A sorted list of courses.
+- **Process**:
+  - A prompt is created asking GPT-4 to analyze and sort the list of courses.
+  - The response from GPT-4 is processed to extract the sorted list of courses.
+  - If an error occurs, it is caught and handled gracefully.
+
 ```python
 def sort_courses(final_response_list):
     prompt = f"""
@@ -421,6 +506,16 @@ print("Optimized Course List:", final_response_list)
 ### Step 10: Generate Course Details
 
 This function generates detailed information about each recommended course.
+
+**Explanation**:
+- **Purpose**: This function generates detailed information about each recommended course.
+- **Input**: A list of courses and a dataset.
+- **Output**: A list of course details.
+- **Process**:
+  - The function iterates through each course title in the list.
+  - The corresponding row in the dataset is found.
+  - The relevant columns are extracted and appended to the result list.
+  - If a course title is not found in the dataset, a warning is printed.
 
 ```python
 def generate_course_details(final_response_list, df):
@@ -504,3 +599,5 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
