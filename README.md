@@ -6,6 +6,8 @@ This project is a **Course Recommendation System** designed to help users identi
 
 The project is divided into several key components, each of which is explained in detail below. The code is modular, making it easy to extend or modify for different use cases.
 
+![Sample Image](https://i.imgur.com/O1Zq7Wa.jpeg)
+
 ---
 
 ## Table of Contents
