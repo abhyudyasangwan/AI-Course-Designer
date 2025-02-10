@@ -59,10 +59,7 @@ This function sends a course title to GPT-4 and retrieves a list of skills requi
 
 ```python
 def get_skills_from_gpt4(course_title):
-    """
-    Sends the course title to GPT-4 and asks for the skills required.
-    Returns a comma-separated string of skills.
-    """
+
     prompt = f"""
     You are an expert in analyzing course titles and identifying the skills required to complete the course.
     Based on the course title below, provide a list of skills that a learner must have or will acquire.
@@ -73,13 +70,13 @@ def get_skills_from_gpt4(course_title):
 
     try:
         response = client.chat.completions.create(
-            model="gpt-4",  # Use GPT-4
+            model="gpt-4", 
             messages=[
                 {"role": "system", "content": "You are a helpful assistant."},
                 {"role": "user", "content": prompt}
             ],
-            max_tokens=100,  # Limit the response length
-            temperature=0.5  # Control creativity (lower = more deterministic)
+            max_tokens=100, 
+            temperature=0.5  
         )
         skills = response.choices[0].message.content.strip()
         return skills
@@ -142,7 +139,7 @@ Provide the output as a Python list of skills, like this:
             list_string = list_match.group(0)
             try:
                 skills_list = eval(list_string)
-                if isinstance(skills_list, list):  # Ensuring it's a valid list
+                if isinstance(skills_list, list):  
                     return skills_list
                 else:
                     print("Error: GPT-4 did not return a valid list of skills.")
@@ -177,9 +174,7 @@ This function extracts a Python list from GPT-4's response, even if it includes 
 
 ```python
 def extract_list_from_response(response):
-    """
-    Extracts a Python list from GPT-4's response, even if it includes extra text.
-    """
+
     try:
         # Finding the start and end of the Python list
         start_index = response.find('[')
@@ -346,7 +341,7 @@ print("Courses found:", final_course_list)
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 
-# Load a pre-trained BERT model
+# Loading a pre-trained BERT model
 model = SentenceTransformer('all-MiniLM-L6-v2')  # Lightweight BERT model
 
 def find_similar_course_bert(input_text, course_title_list, similarity_threshold=0.40):
@@ -528,17 +523,17 @@ This function generates detailed information about each recommended course.
 
 ```python
 def generate_course_details(final_response_list, df):
-    # Initialize an empty list to store the results
+    # Initializing an empty list to store the results
     result_list = []
 
-    # Iterate through each course_title in final_response_list
+    # Iterating through each course_title in final_response_list
     for course_title in final_response_list:
         # Find the row in df where course_title matches
         matched_row = df[df['course_title'] == course_title]
 
-        # Check if a match was found
+        # Checking if a match was found
         if not matched_row.empty:
-            # Extract the relevant columns as a list
+            # Extracting the relevant columns as a list
             course_details = [
                 matched_row['course_title'].values[0],
                 matched_row['course_organization'].values[0],
@@ -546,19 +541,15 @@ def generate_course_details(final_response_list, df):
                 matched_row['course_difficulty'].values[0],
             ]
 
-            # Append the course_details list to result_list
+            # Appending the course_details list to result_list
             result_list.append(course_details)
         else:
-            # Handle the case where the course_title is not found in df
             print(f"Warning: Course title '{course_title}' not found in the DataFrame.")
 
-    # Return the result_list
     return result_list
 
-# Call the function
 course_details_list = generate_course_details(final_response_list, df)
 
-# Print the result
 print("Generated Course Details:")
 for course in course_details_list:
     print(course)
@@ -571,8 +562,8 @@ for course in course_details_list:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/course-recommendation-system.git
-   cd course-recommendation-system
+   git clone https://github.com/abhyudyasangwan/AI-Course-Designer
+   cd AI-Course-Designer
    ```
 
 2. Install the required dependencies:
@@ -608,6 +599,6 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 
 ## License
 
-This is a personal project. Please don't use it elsewhere.
+This project is covered under CLA (Contributor License Agreements).
 
 ---
